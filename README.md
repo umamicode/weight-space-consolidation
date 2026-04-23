@@ -41,7 +41,39 @@ Additional algorithms from PyCIL remain registered in `utils/factory.py` (e.g. `
 
 ### LLM experiments (TRACE benchmark)
 
-Continual **instruction tuning** with WSC uses the **[TRACE](https://github.com/BeyonderXX/TRACE)** codebase (DeepSpeed + Hugging Face), not PyCIL. This repository ships a small portable helper under **`TRACE/`** (`wsc_llm.py` + integration notes). **Install into a TRACE clone:** from `src`, run **`python TRACE/install_into_trace.py --trace-root /path/to/TRACE`**. Then see [`TRACE/README.md`](TRACE/README.md) and [`TRACE/INTEGRATION.md`](TRACE/INTEGRATION.md).
+Continual **instruction tuning** with WSC is evaluated on **[TRACE](https://github.com/BeyonderXX/TRACE)** (DeepSpeed + Hugging Face), not the PyCIL loop above. TRACE itself is **not** vendored here; instead this repo provides a **small bridge package** under [`trace/`](trace/) so you can reuse the same WSC ideas (moment-style importance scores, pre-SWA trimming, SWA helpers) inside your own TRACE checkout or fork.
+
+| Item | Location |
+| --- | --- |
+| Core helpers | [`trace/wsc_llm.py`](trace/wsc_llm.py) — portable primitives for LLM WSC (import from a copied path or extend in JAX as needed). |
+| Installer | [`trace/install_into_trace.py`](trace/install_into_trace.py) — copies `wsc_llm.py` into a TRACE tree and writes `training/WSC_FROM_FORGET_FORGETTING.md` with import hints. |
+| Integration guide | [`trace/INTEGRATION.md`](trace/INTEGRATION.md) — wiring `wsc_llm` into `training/*.py`, replay, and optional `--CL_method` registration. |
+| Overview | [`trace/README.md`](trace/README.md) — how TRACE registers methods and where WSC fits. |
+
+**Install into a local TRACE clone** (from this repository’s `src` directory):
+
+```bash
+python trace/install_into_trace.py --trace-root /path/to/TRACE
+```
+
+Use `--dry-run` to preview, `--force` to overwrite an existing `wsc_llm.py`. After installation, follow `trace/INTEGRATION.md` and your continual DeepSpeed script’s task loop (epochs, replay ratio, SWA schedule) as in the upstream benchmark.
+
+
+## Citation
+
+If you use this code or the **Weight Space Consolidation** method, please cite:
+
+```bibtex
+@misc{cho2026forgetforgettingcontinuallearning,
+      title={Forget Forgetting: Continual Learning in a World of Abundant Memory},
+      author={Dongkyu Cho and Taesup Moon and Rumi Chunara and Kyunghyun Cho and Sungmin Cha},
+      year={2026},
+      eprint={2502.07274},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2502.07274},
+}
+```
 
 
 ## Methods Tested (bibliography)
