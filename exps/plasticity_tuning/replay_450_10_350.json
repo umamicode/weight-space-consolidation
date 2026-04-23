@@ -1,0 +1,15 @@
+{
+    "prefix": "plasticity_450_10_350",
+    "dataset": "cifar100",
+    "memory_size": 2000,
+    "memory_per_class": 450,
+    "fixed_memory": true,
+    "shuffle": true,
+    "init_cls": 10,
+    "increment": 10,
+    "model_name": "replay",
+    "convnet_type": "resnet18",
+    "device": ["5"],
+    "seed": [1993],
+    "epochs": 350
+}

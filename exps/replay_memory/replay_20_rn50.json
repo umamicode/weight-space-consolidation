@@ -1,0 +1,14 @@
+{
+    "prefix": "memory_20",
+    "dataset": "cifar100",
+    "memory_size": 2000,
+    "memory_per_class": 20,
+    "fixed_memory": true,
+    "shuffle": true,
+    "init_cls": 10,
+    "increment": 10,
+    "model_name": "replay",
+    "convnet_type": "resnet50",
+    "device": ["1"],
+    "seed": [1993]
+}

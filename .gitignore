@@ -1,0 +1,10 @@
+data/
+__pycache__/
+.vscode/
+images/
+cifar10_data/
+.ipynb_checkpoints/
+*.pth
+*.pt
+mnist/
+MNIST/

@@ -1,0 +1,14 @@
+{
+    "prefix": "memory_350",
+    "dataset": "cifar100",
+    "memory_size": 2000,
+    "memory_per_class": 350,
+    "fixed_memory": true,
+    "shuffle": true,
+    "init_cls": 10,
+    "increment": 10,
+    "model_name": "wa",
+    "convnet_type": "resnet32",
+    "device": ["5"],
+    "seed": [1993]
+}

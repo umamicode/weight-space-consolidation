@@ -1,0 +1,14 @@
+{
+    "prefix": "modelsize_plasticity",
+    "dataset": "cifar100",
+    "memory_size": 2000,
+    "memory_per_class": 450,
+    "fixed_memory": true,
+    "shuffle": true,
+    "init_cls": 5,
+    "increment": 5,
+    "model_name": "replay",
+    "convnet_type": "resnet32",
+    "device": ["4"],
+    "seed": [1993]
+}
